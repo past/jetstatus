@@ -18,6 +18,7 @@ twitter = {
         $.each(tweets, function () {
           if (this.id > store.lastId) {
             store.lastId = this.id;
+            jetpack.storage.live.history.push(this);
             queue.push({
               title: this.user.name,
               body: this.text,
@@ -48,6 +49,7 @@ twitter = {
 
   suspend: function() {
     clearInterval(poller);
+    clearTimeout(notifier);
   },
 }
 
@@ -56,6 +58,7 @@ store = jetpack.storage.simple;
 if (!store.lastId)
   store.lastId = 1;
 queue = [];
+jetpack.storage.live.history = [];
 notifier = 0;
 poller = 0;
 
@@ -75,10 +78,22 @@ jetpack.statusBar.append({
 
 jetpack.future.import("slideBar");
 jetpack.slideBar.append({
-  url: "http://twitter.com/",
   icon: "http://twitter.com/favicon.ico",
   width: 300,
-  onClick: function (slide) {
-    slide.icon.src = "http://twitter.com/favicon.ico";
-  }
+  onClick: function (slider) {
+    jetpack.storage.live.history.forEach(function (elem) {
+      $("ol", slider.contentDocument.body).append('<li><span class="avatar"><a href="' +
+        'http://twitter.com/' + elem.user.screen_name+'"><img height="48" width="48" src="' +
+        elem.user.profile_image_url + '" alt="'+elem.user.name+'"/></a></span>' +
+        '<span class="main"><strong><a title="'+elem.user.name+'" href="http://twitter.com/'+
+        elem.user.screen_name+'">'+elem.user.screen_name+'</a></strong><span>'+elem.text+
+        '</span></span></li>');
+    });
+  },
+  html: <>
+    <body>
+      <ol>
+      </ol>
+    </body>
+  </>
 });
