@@ -72,3 +72,13 @@ jetpack.statusBar.append({
   },
   width: 36
 });
+
+jetpack.future.import("slideBar");
+jetpack.slideBar.append({
+  url: "http://twitter.com/",
+  icon: "http://twitter.com/favicon.ico",
+  width: 300,
+  onClick: function (slide) {
+    slide.icon.src = "http://twitter.com/favicon.ico";
+  }
+});
