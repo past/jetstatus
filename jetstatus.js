@@ -7,7 +7,7 @@ twitter = {
   update: function () {
     $.ajax({
       type: "GET",
-      url: "http://twitter.com/statuses/friends_timeline.json?since_id="+lastId,
+      url: "http://twitter.com/statuses/friends_timeline.json?since_id="+store.lastId,
       dataType: "json",
       success: function (tweets) {
         console.log(tweets.length + " new tweets");
@@ -16,8 +16,8 @@ twitter = {
           return a.id - b.id;
         });
         $.each(tweets, function () {
-          if (this.id > lastId) {
-            lastId = this.id;
+          if (this.id > store.lastId) {
+            store.lastId = this.id;
             queue.push({
               title: this.user.name,
               body: this.text,
@@ -51,7 +51,10 @@ twitter = {
   },
 }
 
-lastId = 1;
+jetpack.future.import("storage.simple");
+store = jetpack.storage.simple;
+if (!store.lastId)
+  store.lastId = 1;
 queue = [];
 notifier = 0;
 poller = 0;
