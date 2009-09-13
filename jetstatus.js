@@ -79,7 +79,7 @@ jetpack.statusBar.append({
 jetpack.future.import("slideBar");
 jetpack.slideBar.append({
   icon: "http://twitter.com/favicon.ico",
-  width: 300,
+  width: 500,
   onClick: function (slider) {
     $("ol", slider.contentDocument.body).empty();
     jetpack.storage.live.history.forEach(function (elem) {
@@ -92,8 +92,21 @@ jetpack.slideBar.append({
     });
   },
   html: <>
+    <style><![CDATA[
+      * { margin:0; padding:0; text-align: left; }
+      body { color: #666666; background: white; font-family:'Lucida Grande',sans-serif;
+        font-size:0.75em; font-size-adjust:none; font-style:normal; font-variant:normal;
+        font-weight:normal; line-height:normal; text-align:center; }
+      img { height:48px; width:48px; border-color:transparent; border-width:0; }
+      ol.tweets .avatar { display:block; height:50px; left:0; margin:0 10px 0 5px;
+        overflow:hidden; position:absolute; width:50px; color: #666666; }
+      ol.tweets span.main { display:block; margin-left:65px; min-height:50px; overflow:hidden;
+        width:420px; color: #666666; }
+      ol.tweets > li { line-height:1.1em; }
+      ol.tweets { font-size:1.2em; list-style-image:none; list-style-position:outside; list-style-type:none; }
+    ]]></style>
     <body>
-      <ol>
+      <ol class="tweets">
       </ol>
     </body>
   </>
