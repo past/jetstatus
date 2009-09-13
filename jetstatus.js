@@ -18,7 +18,7 @@ twitter = {
         $.each(tweets, function () {
           if (this.id > store.lastId) {
             store.lastId = this.id;
-            jetpack.storage.live.history.push(this);
+            jetpack.storage.live.history.unshift(this);
             queue.push({
               title: this.user.name,
               body: this.text,
