@@ -81,6 +81,7 @@ jetpack.slideBar.append({
   icon: "http://twitter.com/favicon.ico",
   width: 300,
   onClick: function (slider) {
+    $("ol", slider.contentDocument.body).empty();
     jetpack.storage.live.history.forEach(function (elem) {
       $("ol", slider.contentDocument.body).append('<li><span class="avatar"><a href="' +
         'http://twitter.com/' + elem.user.screen_name+'"><img height="48" width="48" src="' +
