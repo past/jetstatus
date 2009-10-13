@@ -114,8 +114,8 @@ jetpack.slideBar.append({
         overflow:hidden; position:absolute; width:50px; color: #666666; }
       ol.tweets span.main { display:block; margin-left:65px; min-height:50px; overflow:hidden;
         width:420px; color: #666666; }
-      ol.tweets > li:first-child { border-top:1px dashed #D2DADA; }
-      ol.tweets > li { border-bottom:1px dashed #D2DADA; line-height:1.1em;
+      ol.tweets li:first-child { border-top:1px dashed #D2DADA; }
+      ol.tweets li { border-bottom:1px dashed #D2DADA; line-height:1.1em;
         padding:0.7em 0 0.6em; position:relative; }
       ol.tweets { font-size:1.2em; list-style-image:none; list-style-position:outside;
         list-style-type:none; }
